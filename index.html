@@ -1,0 +1,2253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uganda Ideas Hub | Connect. Create. Innovate. Develop Uganda.</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================
+           1. CSS VARIABLES & BASE STYLES
+           ========================================== */
+        :root {
+            --primary-yellow: #FFC72C;
+            --primary-red: #D9232A;
+            --primary-black: #111111;
+            --primary-green: #008751;
+            
+            --bg-light: #F8FAFC;
+            --surface-white: #FFFFFF;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
+            
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.03);
+            
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+            
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Top Flag Line Accent */
+        .uganda-flag-bar {
+            height: 4px;
+            width: 100%;
+            background: linear-gradient(90deg, 
+                var(--primary-black) 0% 16.6%, 
+                var(--primary-yellow) 16.6% 33.3%, 
+                var(--primary-red) 33.3% 50%, 
+                var(--primary-black) 50% 66.6%, 
+                var(--primary-yellow) 66.6% 83.3%, 
+                var(--primary-red) 83.3% 100%
+            );
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1001;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: var(--radius-full);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #006b40;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background-color: var(--surface-white);
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #F1F5F9;
+            border-color: #CBD5E1;
+        }
+
+        .btn-accent {
+            background-color: var(--primary-yellow);
+            color: var(--primary-black);
+        }
+
+        .btn-accent:hover {
+            background-color: #e5b123;
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.85rem;
+            font-size: 0.85rem;
+        }
+
+        /* Section Headings */
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .section-tag {
+            color: var(--primary-green);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--primary-black);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: var(--radius-full);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-agri { background: #E8F5E9; color: #2E7D32; }
+        .badge-tech { background: #E3F2FD; color: #1565C0; }
+        .badge-edu { background: #FFF3E0; color: #EF6C00; }
+        .badge-env { background: #E0F2F1; color: #00695C; }
+        .badge-health { background: #FFEBEE; color: #C62828; }
+        .badge-biz { background: #F3E5F5; color: #6A1B9A; }
+
+        /* ==========================================
+           2. HEADER & NAVIGATION
+           ========================================== */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 4px;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 75px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: var(--primary-black);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-black);
+            color: var(--primary-yellow);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            border-bottom: 3px solid var(--primary-red);
+        }
+
+        .logo span {
+            color: var(--primary-green);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: var(--transition);
+            cursor: pointer;
+            padding: 0.5rem 0.25rem;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-green);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-green);
+            border-radius: var(--radius-full);
+        }
+
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary-black);
+        }
+
+        /* User Header Pill */
+        .user-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #F1F5F9;
+            padding: 0.35rem 0.85rem 0.35rem 0.4rem;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .user-avatar-sm {
+            width: 32px;
+            height: 32px;
+            background-color: var(--primary-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        /* ==========================================
+           3. PAGE SECTIONS (VIEWS)
+           ========================================== */
+        .page-view {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+            padding-bottom: 4rem;
+        }
+
+        .page-view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 4rem 0 5rem 0;
+            background: linear-gradient(135deg, rgba(0,135,81,0.05) 0%, rgba(255,199,44,0.08) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 3.25rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--primary-black);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-title span {
+            color: var(--primary-green);
+            position: relative;
+        }
+
+        .hero-title span::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(255, 199, 44, 0.4);
+            z-index: -1;
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-img {
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            object-fit: cover;
+            width: 100%;
+            height: 400px;
+            border: 4px solid white;
+        }
+
+        .hero-badge-card {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background: white;
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .hero-badge-card i {
+            font-size: 2rem;
+            color: var(--primary-yellow);
+        }
+
+        /* Stats Bar */
+        .stats-section {
+            margin-top: -2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-item {
+            text-align: center;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--primary-black);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 0;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .step-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-green);
+        }
+
+        .step-num {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-light);
+            color: var(--primary-green);
+            font-weight: 800;
+            font-size: 1.25rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border: 2px solid var(--border-color);
+        }
+
+        .step-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Home Content Showcase */
+        .home-showcase {
+            padding: 2rem 0 5rem 0;
+        }
+
+        /* Card Grid Layout */
+        .ideas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Idea Card Styles */
+        .idea-card {
+            background: white;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .idea-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-img-wrap {
+            height: 180px;
+            width: 100%;
+            position: relative;
+            background-color: #E2E8F0;
+            overflow: hidden;
+        }
+
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-location {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--primary-black);
+            line-height: 1.3;
+        }
+
+        .card-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.25rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+
+        .card-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+
+        .author-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--primary-yellow);
+            color: var(--primary-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .author-info h5 {
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .author-info span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .card-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #F8FAFC;
+            padding: 0.75rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .action-btn-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .icon-btn:hover, .icon-btn.active {
+            color: var(--primary-red);
+        }
+
+        /* --- Ideas & Innovations Page Controls --- */
+        .controls-bar {
+            background: white;
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.75rem;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border-color);
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-green);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.25rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border-color);
+            background: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+        }
+
+        /* --- Share an Idea / Submit Page --- */
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary-black);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(0, 135, 81, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Custom Alert */
+        .alert-success {
+            background: #E8F5E9;
+            color: #2E7D32;
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 1.5rem;
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+            border: 1px solid #A5D6A7;
+        }
+
+        /* --- Communities Page --- */
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .community-card {
+            background: white;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: var(--transition);
+        }
+
+        .community-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-green);
+        }
+
+        .community-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .community-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 135, 81, 0.1);
+            color: var(--primary-green);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .community-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* --- Detail Modal (View Idea & Discussion) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-container {
+            background: white;
+            width: 100%;
+            max-width: 850px;
+            max-height: 90vh;
+            border-radius: var(--radius-lg);
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            animation: modalUp 0.25s ease-out;
+        }
+
+        @keyframes modalUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 36px;
+            height: 36px;
+            background: white;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-body {
+            padding: 2.5rem;
+        }
+
+        .modal-header-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-grid-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .comments-section {
+            margin-top: 2.5rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+
+        .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .comment-item {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .comment-box-input {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        /* --- Auth Page (Login/Register) --- */
+        .auth-card {
+            max-width: 480px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .auth-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 0.75rem;
+            text-align: center;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+
+        .auth-tab.active {
+            color: var(--primary-green);
+            border-color: var(--primary-green);
+        }
+
+        /* --- Profile View --- */
+        .profile-card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, var(--primary-green), #004d2e);
+            color: white;
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .profile-avatar-lg {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-yellow);
+            color: var(--primary-black);
+            font-size: 2rem;
+            font-weight: 800;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            border: 4px solid white;
+        }
+
+        .profile-body {
+            padding: 2rem;
+        }
+
+        /* --- About & Contact Layouts --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-box {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            margin-top: 1.5rem;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2.5rem;
+        }
+
+        .contact-info {
+            background: var(--primary-black);
+            color: white;
+            padding: 2.5rem;
+            border-radius: var(--radius-md);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item i {
+            color: var(--primary-yellow);
+            font-size: 1.25rem;
+        }
+
+        /* ==========================================
+           4. FOOTER
+           ========================================== */
+        footer {
+            background: var(--primary-black);
+            color: white;
+            padding: 4rem 0 2rem 0;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand p {
+            color: #94A3B8;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            max-width: 320px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: white;
+            position: relative;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 30px;
+            height: 2px;
+            background: var(--primary-yellow);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #94A3B8;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-yellow);
+            padding-left: 4px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .social-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #1E293B;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-btn:hover {
+            background: var(--primary-green);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid #1E293B;
+            text-align: center;
+            color: #64748B;
+            font-size: 0.85rem;
+        }
+
+        .footer-school-badge {
+            display: inline-block;
+            background: rgba(255, 199, 44, 0.15);
+            color: var(--primary-yellow);
+            padding: 0.35rem 0.85rem;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.75rem;
+        }
+
+        /* ==========================================
+           5. RESPONSIVE DESIGN (MEDIA QUERIES)
+           ========================================== */
+        @media (max-width: 992px) {
+            .hero-grid, .about-grid, .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .stat-item {
+                border-right: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 79px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 79px);
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                align-items: flex-start;
+                gap: 1.5rem;
+                transition: var(--transition);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-grid-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ugandan Flag Accent Line -->
+    <div class="uganda-flag-bar"></div>
+
+    <!-- HEADER & NAVIGATION -->
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo" onclick="navigateTo('home')">
+                <div class="logo-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <div>Uganda<span>IdeasHub</span></div>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a class="nav-link active" onclick="navigateTo('home')">Home</a></li>
+                <li><a class="nav-link" onclick="navigateTo('ideas')">Ideas & Innovations</a></li>
+                <li><a class="nav-link" onclick="navigateTo('communities')">Communities</a></li>
+                <li><a class="nav-link" onclick="navigateTo('share')">Share an Idea</a></li>
+                <li><a class="nav-link" onclick="navigateTo('about')">About</a></li>
+                <li><a class="nav-link" onclick="navigateTo('contact')">Contact</a></li>
+            </ul>
+
+            <div class="auth-buttons" id="authContainer">
+                <!-- Dynamically rendered via JavaScript based on auth state -->
+            </div>
+
+            <div class="hamburger" id="hamburgerBtn" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA (PAGES) -->
+    <main>
+        <!-- ================= HOME PAGE ================= -->
+        <section id="home" class="page-view active">
+            <div class="hero">
+                <div class="container hero-grid">
+                    <div>
+                        <span class="section-tag"><i class="fa-solid fa-flag"></i> S4 UCE School Project</span>
+                        <h1 class="hero-title">Connect. Create. Innovate. <span>Develop Uganda.</span></h1>
+                        <p class="hero-desc">
+                            A local digital platform connecting students, entrepreneurs, and innovators across all Ugandan districts to share local solutions using available community resources.
+                        </p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary" onclick="navigateTo('share')"><i class="fa-solid fa-plus"></i> Share an Idea</button>
+                            <button class="btn btn-secondary" onclick="navigateTo('ideas')"><i class="fa-solid fa-compass"></i> Explore Ideas</button>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="Ugandan Students Innovating" class="hero-img">
+                        <div class="hero-badge-card">
+                            <i class="fa-solid fa-award"></i>
+                            <div>
+                                <h4 style="font-size: 0.95rem;">UCE Project Theme</h4>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">Resource Utilization for Community Development</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="container stats-section">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" id="statIdeas">120+</div>
+                        <div class="stat-label">Innovations Shared</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">135</div>
+                        <div class="stat-label">Districts Reached</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1,400+</div>
+                        <div class="stat-label">Active Youth & Innovators</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24</div>
+                        <div class="stat-label">Local Hub Communities</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <section class="how-it-works">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-tag">Simple Process</span>
+                        <h2 class="section-title">How Uganda Ideas Hub Works</h2>
+                        <p class="section-desc">We leverage modern ICT tools to turn simple local ideas into practical community-driven solutions.</p>
+                    </div>
+
+                    <div class="steps-grid">
+                        <div class="step-card">
+                            <div class="step-num">1</div>
+                            <h3>Identify a Problem</h3>
+                            <p>Spot an issue in your local school, parish, or district regarding farming, waste, water, or energy.</p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-num">2</div>
+                            <h3>Share Your Innovation</h3>
+                            <p>Post your idea detailing how available local materials can solve the problem effectively.</p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-num">3</div>
+                            <h3>Collaborate & Build</h3>
+                            <p>Connect with peers, mentors, and local entrepreneurs to bring your innovation to life.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Showcase -->
+            <section class="home-showcase">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-tag">Featured Solutions</span>
+                        <h2 class="section-title">Latest Innovations Across Uganda</h2>
+                        <p class="section-desc">Explore impactful solutions created by students and local community innovators.</p>
+                    </div>
+
+                    <div class="ideas-grid" id="featuredIdeasGrid">
+                        <!-- Rendered dynamically -->
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2.5rem;">
+                        <button class="btn btn-secondary" onclick="navigateTo('ideas')">View All Ideas & Innovations <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- ================= IDEAS & INNOVATIONS PAGE ================= -->
+        <section id="ideas" class="page-view">
+            <div class="container" style="padding-top: 2rem;">
+                <div class="section-header">
+                    <span class="section-tag">Innovation Repository</span>
+                    <h2 class="section-title">Explore Community Ideas</h2>
+                    <p class="section-desc">Search and filter through scalable solutions developed using Uganda's local resources.</p>
+                </div>
+
+                <!-- Controls Bar -->
+                <div class="controls-bar">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search by title, district or keyword..." oninput="filterIdeas()">
+                    </div>
+                    <div class="filter-group" id="categoryFilterGroup">
+                        <button class="filter-btn active" onclick="setCategoryFilter('All', this)">All Categories</button>
+                        <button class="filter-btn" onclick="setCategoryFilter('Agriculture', this)">Agriculture</button>
+                        <button class="filter-btn" onclick="setCategoryFilter('Technology', this)">Technology</button>
+                        <button class="filter-btn" onclick="setCategoryFilter('Education', this)">Education</button>
+                        <button class="filter-btn" onclick="setCategoryFilter('Environment', this)">Environment</button>
+                        <button class="filter-btn" onclick="setCategoryFilter('Health', this)">Health</button>
+                        <button class="filter-btn" onclick="setCategoryFilter('Business', this)">Business</button>
+                    </div>
+                </div>
+
+                <!-- Ideas Display Grid -->
+                <div class="ideas-grid" id="allIdeasGrid">
+                    <!-- Rendered dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SHARE AN IDEA PAGE ================= -->
+        <section id="share" class="page-view">
+            <div class="container" style="padding-top: 2rem;">
+                <div class="section-header">
+                    <span class="section-tag">Submit Your Innovation</span>
+                    <h2 class="section-title">Share an Idea for Community Impact</h2>
+                    <p class="section-desc">Document your creative idea or resource-based project to inspire and collaborate with others.</p>
+                </div>
+
+                <div class="form-container">
+                    <div id="submitAlert" class="alert-success">
+                        <i class="fa-solid fa-circle-check" style="font-size: 1.25rem;"></i>
+                        <div>
+                            <strong>Success!</strong> Your idea has been submitted and published to the platform!
+                        </div>
+                    </div>
+
+                    <form id="ideaForm" onsubmit="handleIdeaSubmit(event)">
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label class="form-label" for="ideaTitle">Idea / Innovation Title *</label>
+                                <input type="text" id="ideaTitle" class="form-input" placeholder="e.g. Low-Cost Plastic Bottle Drip Irrigation" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="ideaCategory">Category *</label>
+                                <select id="ideaCategory" class="form-select" required>
+                                    <option value="">Select Category</option>
+                                    <option value="Agriculture">Agriculture</option>
+                                    <option value="Technology">Technology</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Environment">Environment</option>
+                                    <option value="Health">Health</option>
+                                    <option value="Business">Business</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="ideaDistrict">District / Region *</label>
+                                <input type="text" id="ideaDistrict" class="form-input" placeholder="e.g. Mbarara, Gulu, Wakiso" required>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label class="form-label" for="ideaProblem">Community Problem Being Solved *</label>
+                                <textarea id="ideaProblem" class="form-textarea" placeholder="Describe the specific challenge faced by your community..." required></textarea>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label class="form-label" for="ideaSolution">Proposed Solution & Resource Utilization *</label>
+                                <textarea id="ideaSolution" class="form-textarea" placeholder="Explain your solution and how local resources (solar, recycled plastic, crop waste) are used..." required></textarea>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label class="form-label" for="ideaBenefit">Expected Community Benefit *</label>
+                                <input type="text" id="ideaBenefit" class="form-input" placeholder="e.g. Increases crop yields for 50+ local smallholder farmers" required>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label class="form-label" for="ideaImage">Project Image URL (Optional)</label>
+                                <input type="url" id="ideaImage" class="form-input" placeholder="Paste image link or leave blank for automatic default photo">
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 1.5rem; text-align: right;">
+                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Publish Idea</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= COMMUNITIES PAGE ================= -->
+        <section id="communities" class="page-view">
+            <div class="container" style="padding-top: 2rem;">
+                <div class="section-header">
+                    <span class="section-tag">Local Hubs</span>
+                    <h2 class="section-title">Regional & Interest Communities</h2>
+                    <p class="section-desc">Join regional networks of student creators, innovators, and mentors across Uganda.</p>
+                </div>
+
+                <div class="community-grid" id="communityGrid">
+                    <!-- Rendered dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABOUT PAGE ================= -->
+        <section id="about" class="page-view">
+            <div class="container" style="padding-top: 2rem;">
+                <div class="section-header">
+                    <span class="section-tag">Project Background</span>
+                    <h2 class="section-title">About Uganda Ideas Hub</h2>
+                    <p class="section-desc">An S4 UCE ICT Project demonstrating how digital tools promote community-led development.</p>
+                </div>
+
+                <div class="about-grid">
+                    <div>
+                        <h3 style="font-size: 1.75rem; margin-bottom: 1rem; color: var(--primary-black);">Theme: Utilization of Available Resources for Community Development</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 1rem;">
+                            In many regions of Uganda, communities face economic, agricultural, and environmental challenges. However, abundant local resources—such as sunshine, crop residues, plastic waste, and talented young minds—remain underutilized.
+                        </p>
+                        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                            <strong>Uganda Ideas Hub</strong> was designed as an S4 UCE project to bridge this gap. By giving youth, students, and local innovators a digital showcase, we convert simple locally-available materials into structured, scalable solutions.
+                        </p>
+
+                        <div style="display: flex; gap: 1rem;">
+                            <div style="border-left: 3px solid var(--primary-green); padding-left: 1rem;">
+                                <h4>Our Mission</h4>
+                                <p style="font-size: 0.9rem; color: var(--text-muted);">To connect young Ugandans and facilitate collaborative problem-solving using available local resources.</p>
+                            </div>
+                            <div style="border-left: 3px solid var(--primary-yellow); padding-left: 1rem;">
+                                <h4>Our Vision</h4>
+                                <p style="font-size: 0.9rem; color: var(--text-muted);">A self-reliant Uganda driven by student creativity, technological inclusion, and sustainable local innovations.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-box">
+                        <h3 style="margin-bottom: 1rem;">Core Pillars of the Platform</h3>
+                        <ul style="display: flex; flex-direction: column; gap: 1rem;">
+                            <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                                <i class="fa-solid fa-lightbulb" style="color: var(--primary-yellow); font-size: 1.25rem; margin-top: 3px;"></i>
+                                <div>
+                                    <strong>Creativity & Innovation</strong>
+                                    <p style="font-size: 0.85rem; color: var(--text-muted);">Encouraging students to design solutions using accessible local equipment and materials.</p>
+                                </div>
+                            </li>
+                            <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                                <i class="fa-solid fa-share-nodes" style="color: var(--primary-green); font-size: 1.25rem; margin-top: 3px;"></i>
+                                <div>
+                                    <strong>Knowledge Sharing</strong>
+                                    <p style="font-size: 0.85rem; color: var(--text-muted);">Openly publishing ideas so communities in other districts can adapt successful methods.</p>
+                                </div>
+                            </li>
+                            <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                                <i class="fa-solid fa-people-group" style="color: var(--primary-red); font-size: 1.25rem; margin-top: 3px;"></i>
+                                <div>
+                                    <strong>Youth Collaboration</strong>
+                                    <p style="font-size: 0.85rem; color: var(--text-muted);">Connecting secondary school students with university mentors and local business entrepreneurs.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTACT PAGE ================= -->
+        <section id="contact" class="page-view">
+            <div class="container" style="padding-top: 2rem;">
+                <div class="section-header">
+                    <span class="section-tag">Get in Touch</span>
+                    <h2 class="section-title">Contact Platform Coordinators</h2>
+                    <p class="section-desc">Have questions about this UCE project or want to register your school? Reach out!</p>
+                </div>
+
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <div>
+                            <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Contact Information</h3>
+                            <div class="info-item">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <div>
+                                    <p style="font-weight: 700; font-size: 0.9rem;">Project Location</p>
+                                    <p style="font-size: 0.85rem; color: #CBD5E1;">Kampala, Uganda</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fa-solid fa-envelope"></i>
+                                <div>
+                                    <p style="font-weight: 700; font-size: 0.9rem;">Email Address</p>
+                                    <p style="font-size: 0.85rem; color: #CBD5E1;">project@ugandaideashub.ug</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fa-solid fa-phone"></i>
+                                <div>
+                                    <p style="font-weight: 700; font-size: 0.9rem;">Phone Contact</p>
+                                    <p style="font-size: 0.85rem; color: #CBD5E1;">+256 700 000 000 / +256 770 000 000</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p style="font-size: 0.8rem; color: #94A3B8;">S4 UCE Computer Studies / ICT Practical Submission</p>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                        <div id="contactAlert" class="alert-success">
+                            <i class="fa-solid fa-circle-check"></i> Message sent successfully! We will get back to you shortly.
+                        </div>
+                        <form onsubmit="handleContactSubmit(event)">
+                            <div class="form-group">
+                                <label class="form-label">Full Name *</label>
+                                <input type="text" class="form-input" placeholder="e.g. Mukasa David" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email Address *</label>
+                                <input type="email" class="form-input" placeholder="e.g. mukasa@gmail.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Message / Inquiry *</label>
+                                <textarea class="form-textarea" rows="4" placeholder="Write your message here..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= AUTH PAGE (LOGIN / REGISTER) ================= -->
+        <section id="auth" class="page-view">
+            <div class="container" style="padding-top: 2rem;">
+                <div class="auth-card">
+                    <div class="auth-tabs">
+                        <div class="auth-tab active" id="loginTab" onclick="switchAuthMode('login')">Login</div>
+                        <div class="auth-tab" id="registerTab" onclick="switchAuthMode('register')">Register</div>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form id="loginForm" onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label class="form-label">Email or Username</label>
+                            <input type="text" class="form-input" id="loginUser" placeholder="Enter your email or username" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-input" required placeholder="••••••••">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Login</button>
+                    </form>
+
+                    <!-- Registration Form -->
+                    <form id="registerForm" onsubmit="handleRegister(event)" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" id="regName" class="form-input" placeholder="e.g. Akello Sarah" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Username *</label>
+                            <input type="text" id="regUsername" class="form-input" placeholder="e.g. akello_s" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email *</label>
+                            <input type="email" id="regEmail" class="form-input" placeholder="sarah@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">District *</label>
+                            <input type="text" id="regDistrict" class="form-input" placeholder="e.g. Lira" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Primary Area of Interest</label>
+                            <select id="regInterest" class="form-select">
+                                <option value="Agriculture">Agriculture</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Education">Education</option>
+                                <option value="Environment">Environment</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Password *</label>
+                            <input type="password" id="regPass" class="form-input" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Create Account</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= USER PROFILE PAGE ================= -->
+        <section id="profile" class="page-view">
+            <div class="container" style="padding-top: 2rem;">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar-lg" id="profAvatar">U</div>
+                        <h2 id="profName">User Full Name</h2>
+                        <p id="profDistrict" style="opacity: 0.9;"><i class="fa-solid fa-location-dot"></i> District, Uganda</p>
+                    </div>
+                    <div class="profile-body">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; background: var(--bg-light); padding: 1rem; border-radius: var(--radius-md);">
+                            <div>
+                                <span style="font-size: 0.8rem; color: var(--text-muted); display: block;">Username</span>
+                                <strong id="profUsername">@username</strong>
+                            </div>
+                            <div>
+                                <span style="font-size: 0.8rem; color: var(--text-muted); display: block;">Main Interest</span>
+                                <strong id="profInterest">Agriculture</strong>
+                            </div>
+                        </div>
+
+                        <h3 style="margin-bottom: 1rem;">My Submitted Ideas</h3>
+                        <div id="userIdeasContainer">
+                            <!-- Populated dynamically -->
+                        </div>
+
+                        <div style="margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 1rem; text-align: right;">
+                            <button class="btn btn-secondary" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- IDEA DETAIL & DISCUSSION MODAL -->
+    <div class="modal-overlay" id="ideaModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body" id="modalContent">
+                <!-- Dynamically filled by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo" style="color: white;">
+                        <div class="logo-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                        <div>Uganda<span style="color: var(--primary-yellow);">IdeasHub</span></div>
+                    </div>
+                    <p>Connecting Ugandans to share practical solutions and leverage available resources for grassroots community development.</p>
+                    <span class="footer-school-badge"><i class="fa-solid fa-graduation-cap"></i> S4 UCE School Project</span>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a onclick="navigateTo('home')">Home</a>
+                        <a onclick="navigateTo('ideas')">Ideas & Innovations</a>
+                        <a onclick="navigateTo('communities')">Communities</a>
+                        <a onclick="navigateTo('share')">Share an Idea</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Categories</h4>
+                    <div class="footer-links">
+                        <a onclick="navigateTo('ideas'); setCategoryFilter('Agriculture');">Agriculture</a>
+                        <a onclick="navigateTo('ideas'); setCategoryFilter('Technology');">Technology</a>
+                        <a onclick="navigateTo('ideas'); setCategoryFilter('Environment');">Environment</a>
+                        <a onclick="navigateTo('ideas'); setCategoryFilter('Education');">Education</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Connect With Us</h4>
+                    <p style="color: #94A3B8; font-size: 0.85rem; margin-bottom: 0.75rem;">Join the student & innovator network across Uganda.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Uganda Ideas Hub. Developed for UCE ICT Practical Theme: "Utilization of Available Resources for Community Development".</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+       6. JAVASCRIPT LOGIC & DEMO DATA
+       ========================================== -->
+    <script>
+        /* Sample Initial Demonstration Data (Ugandan Context) */
+        const initialIdeas = [
+            {
+                id: 1,
+                title: "Low-Cost Solar Water Purifier Using Local Sand & Charcoal",
+                category: "Environment",
+                district: "Arua",
+                author: "Muwanguzi Joel",
+                date: "12 May 2026",
+                problem: "Lack of clean drinking water in rural primary schools leads to frequent water-borne diseases.",
+                solution: "Using discarded plastic barrels, locally crushed quartz sand, wood charcoal, and solar heating rays to construct a multi-stage bio-sand water filter.",
+                benefit: "Provides 200+ students clean daily water for less than UGX 50,000 in total materials.",
+                image: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=600&q=80",
+                likes: 34,
+                comments: [
+                    { name: "Kintu Denis", text: "Great utilization of charcoal and sand! Very practical for West Nile schools." }
+                ]
+            },
+            {
+                id: 2,
+                title: "Cassava Peel Organic Poultry Feed Processing",
+                category: "Agriculture",
+                district: "Gulu",
+                author: "Oyet Patrick",
+                date: "04 June 2026",
+                problem: "High cost of commercial poultry feed combined with cassava peel waste accumulating at local markets.",
+                solution: "Collecting cassava peels from chips vendors, sun-drying, fermenting with yeast, and grinding into nutrient-rich maize-substitute feed.",
+                benefit: "Reduces poultry feed expenses by 40% for local youth farm collectives.",
+                image: "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=600&q=80",
+                likes: 52,
+                comments: [
+                    { name: "Achan Grace", text: "Cassava waste is a huge problem in Gulu main market. This is a brilliant fix!" }
+                ]
+            },
+            {
+                id: 3,
+                title: "Offline Digital Library for Rural Secondary Schools",
+                category: "Education",
+                district: "Mbale",
+                author: "Namasopo Mary",
+                date: "18 June 2026",
+                problem: "Poor internet coverage and high data costs restrict students from accessing NCDC e-learning materials.",
+                solution: "Configuring low-power Raspberry Pi computers as local Wi-Fi hotspots pre-loaded with offline textbooks and UCE revision guides.",
+                benefit: "Allows over 400 S1-S4 students to access study resources without internet connections.",
+                image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80",
+                likes: 89,
+                comments: [
+                    { name: "Wanyama John", text: "Would love to see this replicated in Eastern region schools!" }
+                ]
+            },
+            {
+                id: 4,
+                title: "Briquetting Banana Stems & Sawdust for Clean Cooking",
+                category: "Environment",
+                district: "Mbarara",
+                author: "Tumwesigye Alex",
+                date: "02 July 2026",
+                problem: "Deforestation and high charcoal prices affecting domestic households and school kitchens.",
+                solution: "Compressing dried banana pseudostems and carpenter sawdust waste using simple hand-operated metal lever presses into smokeless briquettes.",
+                benefit: "Saves trees, reduces kitchen smoke inhalation, and creates youth employment.",
+                image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80",
+                likes: 41,
+                comments: []
+            },
+            {
+                id: 5,
+                title: "SMS Agricultural Market Price Connector for Smallholders",
+                category: "Technology",
+                district: "Kabale",
+                author: "Kemigisha Sandra",
+                date: "20 July 2026",
+                problem: "Irish potato farmers in Kigezi sub-region often get underpaid by middlemen due to lack of market price transparency.",
+                solution: "An automated USSD/SMS system fetching real-time market rates from Owino and Kalerwe markets so farmers can negotiate fairly.",
+                benefit: "Empowers 150+ farmer groups with fair trade data.",
+                image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=600&q=80",
+                likes: 67,
+                comments: []
+            }
+        ];
+
+        const sampleCommunities = [
+            { name: "Kampala Innovators Hub", region: "Kampala", members: 320, icon: "fa-laptop-code", desc: "Software, hardware, and urban business solutions." },
+            { name: "Gulu Youth Agribusiness Network", region: "Gulu", members: 185, icon: "fa-seedling", desc: "Promoting sustainable post-harvest tech and farming value addition." },
+            { name: "Mbarara Eco-Creators", region: "Mbarara", members: 140, icon: "fa-recycle", desc: "Turning local agricultural and plastic waste into economic products." },
+            { name: "Jinja Renewable Energy Club", region: "Jinja", members: 95, icon: "fa-solar-panel", desc: "Developing accessible solar and biogas setups for rural homes." },
+            { name: "Kabalega Student Tech Club", region: "Hoima", members: 210, icon: "fa-microchip", desc: "Secondary school students applying ICT to solve regional challenges." },
+            { name: "Eastern Uganda Literacy & EdTech", region: "Mbale", members: 115, icon: "fa-book-open", desc: "Improving digital inclusion and offline education resources." }
+        ];
+
+        /* Application State */
+        let ideasData = JSON.parse(localStorage.getItem('ug_ideas')) || initialIdeas;
+        let currentUser = JSON.parse(localStorage.getItem('ug_user')) || null;
+        let currentFilter = 'All';
+
+        /* Initialization */
+        document.addEventListener("DOMContentLoaded", () => {
+            renderAuthStatus();
+            renderFeaturedIdeas();
+            renderAllIdeas();
+            renderCommunities();
+            updateStats();
+        });
+
+        /* --- Navigation Controller --- */
+        function navigateTo(pageId) {
+            // Update Page Views
+            document.querySelectorAll('.page-view').forEach(view => {
+                view.classList.remove('active');
+            });
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) targetPage.classList.add('active');
+
+            // Update Nav Links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Close Mobile Menu if open
+            document.getElementById('navMenu').classList.remove('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        /* --- Render Functions --- */
+        function getCategoryBadgeClass(category) {
+            switch(category) {
+                case 'Agriculture': return 'badge-agri';
+                case 'Technology': return 'badge-tech';
+                case 'Education': return 'badge-edu';
+                case 'Environment': return 'badge-env';
+                case 'Health': return 'badge-health';
+                default: return 'badge-biz';
+            }
+        }
+
+        function createIdeaCardHtml(idea) {
+            return `
+                <div class="idea-card">
+                    <div class="card-img-wrap">
+                        <img src="${idea.image}" alt="${idea.title}">
+                        <span class="badge ${getCategoryBadgeClass(idea.category)} card-badge">${idea.category}</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-location"><i class="fa-solid fa-location-dot"></i> ${idea.district} District</div>
+                        <h3 class="card-title">${idea.title}</h3>
+                        <p class="card-text">${idea.problem}</p>
+                        <div class="card-author">
+                            <div class="author-avatar">${idea.author.charAt(0)}</div>
+                            <div class="author-info">
+                                <h5>${idea.author}</h5>
+                                <span>${idea.date}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <div class="action-btn-group">
+                            <button class="icon-btn" onclick="toggleLike(${idea.id})">
+                                <i class="fa-regular fa-heart"></i> ${idea.likes}
+                            </button>
+                            <button class="icon-btn" onclick="openIdeaModal(${idea.id})">
+                                <i class="fa-regular fa-comment"></i> ${idea.comments ? idea.comments.length : 0}
+                            </button>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" onclick="openIdeaModal(${idea.id})">View Solution</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderFeaturedIdeas() {
+            const container = document.getElementById('featuredIdeasGrid');
+            if(!container) return;
+            const featured = ideasData.slice(0, 3);
+            container.innerHTML = featured.map(idea => createIdeaCardHtml(idea)).join('');
+        }
+
+        function renderAllIdeas() {
+            const container = document.getElementById('allIdeasGrid');
+            if(!container) return;
+
+            let filtered = ideasData;
+
+            // Apply Category Filter
+            if(currentFilter !== 'All') {
+                filtered = filtered.filter(i => i.category === currentFilter);
+            }
+
+            // Apply Search Query
+            const query = document.getElementById('searchInput')?.value.toLowerCase();
+            if(query) {
+                filtered = filtered.filter(i => 
+                    i.title.toLowerCase().includes(query) || 
+                    i.district.toLowerCase().includes(query) ||
+                    i.problem.toLowerCase().includes(query)
+                );
+            }
+
+            if(filtered.length === 0) {
+                container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 3rem 0;">No ideas found matching your search criteria.</p>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(idea => createIdeaCardHtml(idea)).join('');
+        }
+
+        function renderCommunities() {
+            const container = document.getElementById('communityGrid');
+            if(!container) return;
+
+            container.innerHTML = sampleCommunities.map(c => `
+                <div class="community-card">
+                    <div class="community-header">
+                        <div class="community-icon"><i class="fa-solid ${c.icon}"></i></div>
+                        <div>
+                            <h3 style="font-size: 1.15rem;">${c.name}</h3>
+                            <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-solid fa-location-dot"></i> ${c.region}</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">${c.desc}</p>
+                    <div class="community-meta">
+                        <span><i class="fa-solid fa-users"></i> ${c.members} Members</span>
+                        <span><i class="fa-solid fa-comments"></i> Active Discussions</span>
+                    </div>
+                    <button class="btn btn-secondary btn-sm" onclick="alert('Joined ${c.name}! You will receive local project updates.')" style="margin-top: 0.5rem;"><i class="fa-solid fa-user-plus"></i> Join Community Hub</button>
+                </div>
+            `).join('');
+        }
+
+        function updateStats() {
+            const statIdeas = document.getElementById('statIdeas');
+            if(statIdeas) statIdeas.innerText = ideasData.length + "+";
+        }
+
+        /* --- Filtering & Search --- */
+        function setCategoryFilter(cat, btn) {
+            currentFilter = cat;
+            if(btn) {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+            renderAllIdeas();
+        }
+
+        function filterIdeas() {
+            renderAllIdeas();
+        }
+
+        /* --- Idea Actions (Like & Modal Discussion) --- */
+        function toggleLike(id) {
+            const idea = ideasData.find(i => i.id === id);
+            if(idea) {
+                idea.likes += 1;
+                saveIdeasState();
+                renderFeaturedIdeas();
+                renderAllIdeas();
+            }
+        }
+
+        function openIdeaModal(id) {
+            const idea = ideasData.find(i => i.id === id);
+            if(!idea) return;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <img src="${idea.image}" class="modal-header-img" alt="${idea.title}">
+                <span class="badge ${getCategoryBadgeClass(idea.category)}">${idea.category}</span>
+                <h2 style="font-size: 1.8rem; margin: 0.75rem 0; color: var(--primary-black);">${idea.title}</h2>
+                <div style="font-size: 0.85rem; color: var(--text-muted); display: flex; gap: 1rem; margin-bottom: 1rem;">
+                    <span><i class="fa-solid fa-user"></i> By ${idea.author}</span>
+                    <span><i class="fa-solid fa-location-dot"></i> ${idea.district} District</span>
+                    <span><i class="fa-solid fa-calendar"></i> ${idea.date}</span>
+                </div>
+
+                <div class="modal-grid-details">
+                    <div>
+                        <strong><i class="fa-solid fa-triangle-exclamation" style="color: var(--primary-red);"></i> Problem Statement:</strong>
+                        <p style="color: var(--text-muted); margin-top: 0.25rem;">${idea.problem}</p>
+                    </div>
+                    <div>
+                        <strong><i class="fa-solid fa-gears" style="color: var(--primary-green);"></i> Proposed Local Solution:</strong>
+                        <p style="color: var(--text-muted); margin-top: 0.25rem;">${idea.solution}</p>
+                    </div>
+                </div>
+
+                <div style="background: rgba(255, 199, 44, 0.15); padding: 1rem; border-radius: var(--radius-sm); border-left: 4px solid var(--primary-yellow); margin-bottom: 1.5rem;">
+                    <strong>Expected Community Benefit:</strong> ${idea.benefit}
+                </div>
+
+                <!-- Discussion Area -->
+                <div class="comments-section">
+                    <h3><i class="fa-regular fa-comments"></i> Community Collaboration & Discussion (${idea.comments ? idea.comments.length : 0})</h3>
+                    
+                    <div class="comment-box-input">
+                        <input type="text" id="newCommentText" class="form-input" placeholder="Add a feedback comment or suggestion...">
+                        <button class="btn btn-primary" onclick="addComment(${idea.id})">Post</button>
+                    </div>
+
+                    <div class="comment-list">
+                        ${idea.comments && idea.comments.length > 0 ? idea.comments.map(c => `
+                            <div class="comment-item">
+                                <div class="author-avatar" style="width: 36px; height: 36px;">${c.name.charAt(0)}</div>
+                                <div>
+                                    <h5 style="font-size: 0.85rem;">${c.name}</h5>
+                                    <p style="font-size: 0.9rem; color: var(--text-dark);">${c.text}</p>
+                                </div>
+                            </div>
+                        `).join('') : '<p style="color: var(--text-muted); font-size: 0.9rem;">No comments yet. Be the first to share feedback!</p>'}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('ideaModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('ideaModal').classList.remove('active');
+        }
+
+        function addComment(ideaId) {
+            const input = document.getElementById('newCommentText');
+            if(!input || !input.value.trim()) return;
+
+            const idea = ideasData.find(i => i.id === ideaId);
+            if(idea) {
+                if(!idea.comments) idea.comments = [];
+                const authorName = currentUser ? currentUser.name : "Guest Contributor";
+                idea.comments.push({ name: authorName, text: input.value.trim() });
+                saveIdeasState();
+                openIdeaModal(ideaId); // re-render modal
+                renderAllIdeas();
+                renderFeaturedIdeas();
+            }
+        }
+
+        /* --- Form Submissions --- */
+        function handleIdeaSubmit(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('ideaTitle').value;
+            const category = document.getElementById('ideaCategory').value;
+            const district = document.getElementById('ideaDistrict').value;
+            const problem = document.getElementById('ideaProblem').value;
+            const solution = document.getElementById('ideaSolution').value;
+            const benefit = document.getElementById('ideaBenefit').value;
+            const imageInput = document.getElementById('ideaImage').value;
+
+            const defaultImg = "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80";
+
+            const newIdea = {
+                id: Date.now(),
+                title,
+                category,
+                district,
+                author: currentUser ? currentUser.name : "Student Innovator",
+                date: "Just Now",
+                problem,
+                solution,
+                benefit,
+                image: imageInput.trim() !== "" ? imageInput : defaultImg,
+                likes: 0,
+                comments: []
+            };
+
+            ideasData.unshift(newIdea);
+            saveIdeasState();
+
+            // Show success alert & reset
+            const alertBox = document.getElementById('submitAlert');
+            alertBox.style.display = 'flex';
+            document.getElementById('ideaForm').reset();
+
+            renderFeaturedIdeas();
+            renderAllIdeas();
+            updateStats();
+
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+                navigateTo('ideas');
+            }, 1800);
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const alertBox = document.getElementById('contactAlert');
+            alertBox.style.display = 'flex';
+            e.target.reset();
+            setTimeout(() => { alertBox.style.display = 'none'; }, 3000);
+        }
+
+        /* --- Auth & Local User Handling --- */
+        function renderAuthStatus() {
+            const container = document.getElementById('authContainer');
+            if(!container) return;
+
+            if(currentUser) {
+                container.innerHTML = `
+                    <div class="user-pill" onclick="navigateTo('profile')">
+                        <div class="user-avatar-sm">${currentUser.name.charAt(0)}</div>
+                        <span style="font-size: 0.85rem; font-weight: 600;">${currentUser.name.split(' ')[0]}</span>
+                    </div>
+                `;
+                renderProfileView();
+            } else {
+                container.innerHTML = `
+                    <button class="btn btn-secondary btn-sm" onclick="navigateTo('auth')">Login / Register</button>
+                `;
+            }
+        }
+
+        function switchAuthMode(mode) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const loginTab = document.getElementById('loginTab');
+            const registerTab = document.getElementById('registerTab');
+
+            if(mode === 'login') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+                loginTab.classList.add('active');
+                registerTab.classList.remove('active');
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+                registerTab.classList.add('active');
+                loginTab.classList.remove('active');
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const userVal = document.getElementById('loginUser').value;
+            currentUser = {
+                name: userVal || "Demo Student",
+                username: userVal.toLowerCase().replace(/\s+/g, '_'),
+                district: "Kampala",
+                interest: "Technology"
+            };
+            localStorage.setItem('ug_user', JSON.stringify(currentUser));
+            renderAuthStatus();
+            navigateTo('home');
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            currentUser = {
+                name: document.getElementById('regName').value,
+                username: document.getElementById('regUsername').value,
+                district: document.getElementById('regDistrict').value,
+                interest: document.getElementById('regInterest').value
+            };
+            localStorage.setItem('ug_user', JSON.stringify(currentUser));
+            renderAuthStatus();
+            navigateTo('profile');
+        }
+
+        function renderProfileView() {
+            if(!currentUser) return;
+            document.getElementById('profAvatar').innerText = currentUser.name.charAt(0);
+            document.getElementById('profName').innerText = currentUser.name;
+            document.getElementById('profDistrict').innerHTML = `<i class="fa-solid fa-location-dot"></i> ${currentUser.district}, Uganda`;
+            document.getElementById('profUsername').innerText = `@${currentUser.username}`;
+            document.getElementById('profInterest').innerText = currentUser.interest;
+
+            // Render User's Ideas
+            const myIdeas = ideasData.filter(i => i.author === currentUser.name);
+            const userIdeasContainer = document.getElementById('userIdeasContainer');
+            if(myIdeas.length > 0) {
+                userIdeasContainer.innerHTML = myIdeas.map(i => `
+                    <div style="background: var(--bg-light); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong>${i.title}</strong>
+                            <span style="display: block; font-size: 0.8rem; color: var(--text-muted);">${i.category} • ${i.likes} Likes</span>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" onclick="openIdeaModal(${i.id})">View</button>
+                    </div>
+                `).join('');
+            } else {
+                userIdeasContainer.innerHTML = `<p style="font-size: 0.9rem; color: var(--text-muted);">You have not published any innovations yet.</p>`;
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('ug_user');
+            renderAuthStatus();
+            navigateTo('home');
+        }
+
+        function saveIdeasState() {
+            localStorage.setItem('ug_ideas', JSON.stringify(ideasData));
+        }
+    </script>
+</body>
+</html>
